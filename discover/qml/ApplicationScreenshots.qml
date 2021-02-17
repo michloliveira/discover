@@ -22,7 +22,7 @@ ListView {
     focus: overlay.visible
     orientation: Qt.Horizontal
 
-    Layout.preferredHeight: Kirigami.Units.gridUnit * 10
+    Layout.preferredHeight: Kirigami.Units.gridUnit * 15
 
     Keys.onLeftPressed:  if (leftAction.visible)  leftAction.trigger()
     Keys.onRightPressed: if (rightAction.visible) rightAction.trigger()
@@ -132,7 +132,7 @@ ListView {
             bottom: parent.bottom
         }
         edge: Qt.LeftEdge
-        width: Math.max(0, Math.min(root.width/5, root.contentX))
+        width: Math.max(0, Math.min(root.width/10, root.contentX))
     }
 
     Shadow {
@@ -143,7 +143,7 @@ ListView {
             bottom: parent.bottom
         }
         edge: Qt.RightEdge
-        width: Math.max(0, Math.min(root.contentWidth - root.contentX - root.width)/5)
+        width: Math.max(0, Math.min(root.contentWidth - root.contentX - root.width)/10)
     }
 
     RoundButton {

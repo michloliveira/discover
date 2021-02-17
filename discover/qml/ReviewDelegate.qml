@@ -8,7 +8,7 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1
 import org.kde.discover 2.0
-import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 
 RowLayout {
     id: item
@@ -29,10 +29,11 @@ RowLayout {
 
     Rectangle {
         id: reviewBox
-        color: "transparent"
+        Kirigami.Theme.colorSet: Kirigami.Theme.View
+        color: Kirigami.Theme.backgroundColor
         border.color: Qt.tint(Kirigami.Theme.textColor, Qt.rgba(Kirigami.Theme.backgroundColor.r, Kirigami.Theme.backgroundColor.g, Kirigami.Theme.backgroundColor.b, 0.85))
         border.width: 1
-        radius: Kirigami.Units.largeSpacing
+        radius: Kirigami.Units.smallSpacing
 
         Layout.fillWidth: true
         implicitHeight: reviewLayout.implicitHeight + (Kirigami.Units.largeSpacing * 2)
