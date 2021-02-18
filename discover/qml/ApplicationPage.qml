@@ -8,9 +8,10 @@ import QtQuick 2.5
 import QtQuick.Controls 2.3
 import QtQuick.Window 2.1
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.12
 import org.kde.discover 2.0
 import org.kde.discover.app 1.0
-import org.kde.kirigami 2.6 as Kirigami
+import org.kde.kirigami 2.14 as Kirigami
 import "navigation.js" as Navigation
 
 DiscoverPage {
@@ -111,49 +112,52 @@ DiscoverPage {
         spacing: 0
         Control {
             Layout.fillWidth: true
-            contentItem: RowLayout {
-                Layout.leftMargin: Kirigami.Units.largeSpacing
-                Layout.rightMargin: Kirigami.Units.largeSpacing
-                Layout.bottomMargin: Kirigami.Units.largeSpacing
-                Kirigami.Icon {
-                    Layout.preferredHeight: 80
-                    Layout.preferredWidth: 80
-                    source: appInfo.application.icon
-                    Layout.rightMargin: Kirigami.Units.smallSpacing * 2
-                }
-                ColumnLayout {
-                    spacing: 0
-                    Kirigami.Heading {
-                        level: 1
-                        text: appInfo.application.name
-                        lineHeight: 1.0
-                        maximumLineCount: 1
-                        font.weight: Font.DemiBold
-                        elide: Text.ElideRight
-                        Layout.fillWidth: true
-                        Layout.alignment: Text.AlignBottom
+            contentItem: Kirigami.FlexColumn {
+                maximumWidth: Kirigami.Units.gridUnit * 40
+                RowLayout {
+                    Layout.leftMargin: Kirigami.Units.largeSpacing
+                    Layout.rightMargin: Kirigami.Units.largeSpacing
+                    Layout.bottomMargin: Kirigami.Units.largeSpacing
+                    Kirigami.Icon {
+                        Layout.preferredHeight: 80
+                        Layout.preferredWidth: 80
+                        source: appInfo.application.icon
+                        Layout.rightMargin: Kirigami.Units.smallSpacing * 2
                     }
-                    RowLayout {
-                        spacing: Kirigami.Units.largeSpacing
-                        Rating {
-                            rating: appInfo.application.rating ? appInfo.application.rating.sortableRating : 0
-                            starSize: summary.font.pointSize
+                    ColumnLayout {
+                        spacing: 0
+                        Kirigami.Heading {
+                            level: 1
+                            text: appInfo.application.name
+                            lineHeight: 1.0
+                            maximumLineCount: 1
+                            font.weight: Font.DemiBold
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                            Layout.alignment: Text.AlignBottom
                         }
-                        Label {
-                            text: appInfo.application.rating ? i18np("%1 rating", "%1 ratings", appInfo.application.rating.ratingCount) : i18n("No ratings yet")
-                            opacity: 0.5
+                        RowLayout {
+                            spacing: Kirigami.Units.largeSpacing
+                            Rating {
+                                rating: appInfo.application.rating ? appInfo.application.rating.sortableRating : 0
+                                starSize: summary.font.pointSize
+                            }
+                            Label {
+                                text: appInfo.application.rating ? i18np("%1 rating", "%1 ratings", appInfo.application.rating.ratingCount) : i18n("No ratings yet")
+                                opacity: 0.5
+                            }
                         }
-                    }
-                    Kirigami.Heading {
-                        id: summary
-                        level: 4
-                        text: appInfo.application.author
-                        opacity: 0.7
-                        maximumLineCount: 2
-                        lineHeight: lineCount > 1 ? 0.75 : 1.2
-                        elide: Text.ElideRight
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignTop
+                        Kirigami.Heading {
+                            id: summary
+                            level: 4
+                            text: appInfo.application.author
+                            opacity: 0.7
+                            maximumLineCount: 2
+                            lineHeight: lineCount > 1 ? 0.75 : 1.2
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignTop
+                        }
                     }
                 }
             }
@@ -187,7 +191,9 @@ DiscoverPage {
 
         Control {
             Layout.fillWidth: true
-            contentItem: ColumnLayout {
+            padding: Kirigami.Units.largeSpacing
+            contentItem: Kirigami.FlexColumn {
+                maximumWidth: Kirigami.Units.gridUnit * 40
                 Kirigami.Heading {
                     text: appInfo.application.comment
                     level: 2
@@ -198,7 +204,6 @@ DiscoverPage {
 
                 Label {
                     Layout.fillWidth: true
-                    Layout.maximumWidth: Kirigami.Units.gridUnit * 40
                     wrapMode: Text.WordWrap
                     text: appInfo.application.longDescription
                     onLinkActivated: Qt.openUrlExternally(link);
