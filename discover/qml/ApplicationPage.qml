@@ -4,7 +4,7 @@
  *   SPDX-License-Identifier: LGPL-2.0-or-later
  */
 
-import QtQuick 2.5
+import QtQuick 2.15
 import QtQuick.Controls 2.3
 import QtQuick.Window 2.1
 import QtQuick.Layouts 1.1
@@ -173,13 +173,19 @@ DiscoverPage {
             bottomPadding: 0
             leftPadding: 0
             rightPadding: 0
-            contentItem: ScrollView {
-                implicitHeight: Kirigami.Units.gridUnit * 20
-                bottomPadding: Kirigami.Units.gridUnit * 2
+            contentItem: ColumnLayout {
                 ApplicationScreenshots {
                     id: applicationScreenshots
                     visible: count > 0
                     resource: appInfo.application
+                    ScrollBar.horizontal: screenshotsScrollbar
+                    Layout.bottomMargin: Kirigami.Units.gridUnit * 2
+                    Layout.preferredHeight: Kirigami.Units.gridUnit * 20
+                    Layout.fillWidth: true
+                }
+                ScrollBar {
+                    id: screenshotsScrollbar
+                    Layout.fillWidth: true
                 }
             }
         }
