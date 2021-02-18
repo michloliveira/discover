@@ -180,7 +180,6 @@ DiscoverPage {
                     id: applicationScreenshots
                     visible: count > 0
                     resource: appInfo.application
-                    ScrollBar.horizontal: screenshotsScrollbar
                 }
             }
         }
