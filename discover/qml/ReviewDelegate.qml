@@ -85,20 +85,21 @@ Kirigami.AbstractCard {
             }
         }
     }
-    
-    footer: item.compact ? null : rateComponent
-    
-    Component {
-        id: rateComponent
-        RowLayout {
+
+    footer: Loader {
+        active: !item.compact
+        sourceComponent: RowLayout {
             id: rateTheReviewLayout
+            visible: !item.compact
             Label {
+                Layout.leftMargin: Kirigami.Units.largeSpacing
                 visible: usefulnessTotal !== 0
                 text: i18n("Votes: %1 out of %2", usefulnessFavorable, usefulnessTotal)
             }
 
             Label {
                 Layout.fillWidth: true
+                Layout.leftMargin: usefulnessTotal === 0 ? Kirigami.Units.largeSpacing : 0
                 horizontalAlignment: Text.AlignRight
                 // Change this to "Was this review useful?" once Kirigami fixes
                 // https://bugs.kde.org/show_bug.cgi?id=415677
@@ -128,6 +129,7 @@ Kirigami.AbstractCard {
                 Layout.maximumWidth: Kirigami.Units.gridUnit * 3
                 Layout.topMargin: Kirigami.Units.smallSpacing
                 Layout.bottomMargin: Kirigami.Units.smallSpacing
+                Layout.rightMargin: Kirigami.Units.largeSpacing
                 Layout.alignment: Qt.AlignVCenter
 
                 text: i18nc("Keep this string as short as humanly possible", "No")
