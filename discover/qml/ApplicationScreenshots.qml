@@ -122,28 +122,6 @@ ListView {
 
     clip: true
 
-    Shadow {
-        parent: root
-        anchors {
-            left: parent.left
-            top: parent.top
-            bottom: parent.bottom
-        }
-        edge: Qt.LeftEdge
-        width: Math.max(0, Math.min(root.width/10, root.contentX))
-    }
-
-    Shadow {
-        parent: root
-        anchors {
-            right: parent.right
-            top: parent.top
-            bottom: parent.bottom
-        }
-        edge: Qt.RightEdge
-        width: Math.max(0, Math.min(root.contentWidth - root.contentX - root.width)/10)
-    }
-
     RoundButton {
         anchors {
             left: parent.left
