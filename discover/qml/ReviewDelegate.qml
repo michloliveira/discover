@@ -33,35 +33,33 @@ Kirigami.AbstractCard {
             // Header with stars and date of review
             RowLayout {
                 Layout.fillWidth: true
-                // Review title and author
-                Label {
-                    id: content
+                Layout.leftMargin: Kirigami.Units.largeSpacing
+                Layout.rightMargin: Kirigami.Units.largeSpacing
+                Rating {
+                    id: rating
                     Layout.fillWidth: true
-                    Layout.leftMargin: Kirigami.Units.largeSpacing
-                    Layout.rightMargin: Kirigami.Units.largeSpacing
-
-                    elide: Text.ElideRight
-                    readonly property string author: reviewer ? reviewer : i18n("unknown reviewer")
-                    text: summary ? i18n("<b>%1</b> by %2", summary, author) : i18n("Comment by %1", author)
+                    Layout.bottomMargin: Kirigami.Units.largeSpacing
+                    rating: model.rating
+                    starSize: Kirigami.Units.gridUnit
                 }
-
                 Label {
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignRight
-                    text: date.toLocaleDateString(Qt.locale(), Locale.LongFormat)
-                    elide: Text.ElideRight
+                    text: date.toLocaleDateString(Qt.locale(), "MMMM yyyy")
                     opacity: 0.6
                 }
             }
             
-            Rating {
-                id: rating
+            // Review title and author
+            Label {
+                id: content
                 Layout.fillWidth: true
                 Layout.leftMargin: Kirigami.Units.largeSpacing
                 Layout.rightMargin: Kirigami.Units.largeSpacing
-                Layout.bottomMargin: Kirigami.Units.largeSpacing
-                rating: model.rating
-                starSize: Kirigami.Units.gridUnit / 2
+
+                elide: Text.ElideRight
+                readonly property string author: reviewer ? reviewer : i18n("unknown reviewer")
+                text: summary ? i18n("<b>%1</b> by %2", summary, author) : i18n("Comment by %1", author)
             }
             
             // Review text
