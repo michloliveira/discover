@@ -196,8 +196,6 @@ DiscoverPage {
             contentItem: Kirigami.FlexColumn {
                 maximumWidth: Kirigami.Units.gridUnit * 40
                 Kirigami.AbstractCard {
-                    Layout.fillWidth: true
-                    Layout.topMargin: Kirigami.Units.largeSpacing
                     header: Kirigami.Heading {
                         text: appInfo.application.comment
                         level: 2
@@ -426,10 +424,6 @@ DiscoverPage {
                         horizontalAlignment: Text.AlignLeft
                     }
                 }
-            }
-            background: Rectangle {
-                Kirigami.Theme.colorSet: Kirigami.Theme.Window
-                color: Kirigami.Theme.backgroundColor
             }
         }
     }
