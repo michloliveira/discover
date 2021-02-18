@@ -169,22 +169,18 @@ DiscoverPage {
 
         Control {
             Layout.fillWidth: true
-            padding: Kirigami.Units.largeSpacing
-            topPadding: Kirigami.Units.gridUnit
-            contentItem: ColumnLayout {
-                spacing: 0
+            topPadding: Kirigami.Units.gridUnit * 2
+            bottomPadding: 0
+            leftPadding: 0
+            rightPadding: 0
+            contentItem: ScrollView {
+                implicitHeight: Kirigami.Units.gridUnit * 20
+                bottomPadding: Kirigami.Units.gridUnit * 2
                 ApplicationScreenshots {
                     id: applicationScreenshots
                     visible: count > 0
                     resource: appInfo.application
                     ScrollBar.horizontal: screenshotsScrollbar
-                    Layout.fillWidth: true
-                }
-                ScrollBar {
-                    id: screenshotsScrollbar
-                    Layout.fillWidth: true
-                    visible: applicationScreenshots.count > 0
-                    Layout.topMargin: Kirigami.Units.gridUnit
                 }
             }
         }

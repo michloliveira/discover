@@ -22,8 +22,6 @@ ListView {
     focus: overlay.visible
     orientation: Qt.Horizontal
 
-    Layout.preferredHeight: Kirigami.Units.gridUnit * 15
-
     Keys.onLeftPressed:  if (leftAction.visible)  leftAction.trigger()
     Keys.onRightPressed: if (rightAction.visible) rightAction.trigger()
 
