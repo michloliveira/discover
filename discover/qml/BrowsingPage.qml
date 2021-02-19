@@ -7,6 +7,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1
+import QtQml.Models 2.15
 import org.kde.discover 2.0
 import org.kde.discover.app 1.0
 import "navigation.js" as Navigation
@@ -35,7 +36,7 @@ DiscoverPage
         anchors.centerIn: parent
         opacity: 0.5
 
-        visible: apps.count === 0 && apps.model.isFetching
+        visible: featureCategory.count === 0 && featureCategory.model.isFetching
 
         Kirigami.Heading {
             level: 2
@@ -54,7 +55,7 @@ DiscoverPage
         anchors.centerIn: parent
         width: parent.width - (Kirigami.Units.largeSpacing * 4)
 
-        visible: apps.count === 0 && !apps.model.isFetching
+        visible: featureCategory.count === 0 && !featureCategory.model.isFetching
 
         icon.name: "network-disconnect"
         text: xi18nc("@info", "Unable to load applications.<nl/>Please verify Internet connectivity.")
@@ -63,15 +64,39 @@ DiscoverPage
     signal clearSearch()
 
     readonly property bool compact: page.width < 550 || !applicationWindow().wideScreen
+    
+    FeaturedModel {
+        id: featuredModel
+    }
 
-    Kirigami.CardsListView {
-        id: apps
-        model: FeaturedModel {}
-        Component.onCompleted: apps.bottomMargin = Kirigami.Units.largeSpacing * 2
-        currentIndex: -1
-        delegate: ApplicationDelegate {
-            application: model.application
-            compact: page.compact
+    ListView {
+        id: featureCategory
+        model: featuredModel
+        delegate: ColumnLayout {
+            width: featureCategory.width
+            Kirigami.Heading {
+                Layout.fillWidth: true
+                Layout.leftMargin: Kirigami.Units.gridUnit
+                text: categoryName
+            }
+            Kirigami.CardsListView {
+                id: apps
+                orientation: ListView.Horizontal 
+                Layout.fillWidth: true
+                Layout.preferredHeight: Kirigami.Units.gridUnit * 6
+                Component.onCompleted: apps.leftMargin = Kirigami.Units.largeSpacing * 2
+                model: DelegateModel {
+                    id: del
+                    model: featuredModel
+                    rootIndex: modelIndex(index)
+                    delegate: MiniApplicationDelegate {
+                        implicitHeight: Kirigami.Units.gridUnit * 5
+                        implicitWidth: Kirigami.Units.gridUnit * 13
+                        application: applicationObject
+                    }
+                }
+                currentIndex: -1
+            }
         }
     }
 }

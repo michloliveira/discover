@@ -17,6 +17,7 @@ Kirigami.AbstractCard
     property alias application: installButton.application
     property bool compact: false
     property bool showRating: true
+    property bool showDownloadButton: true
     showClickFeedback: true
 
     function trigger() {
@@ -85,6 +86,7 @@ Kirigami.AbstractCard
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 Layout.rowSpan: delegateArea.compact ? 3 : 1
                 compact: delegateArea.compact
+                visible: delegateArea.showDownloadButton
             }
 
             RowLayout {
