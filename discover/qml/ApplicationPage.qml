@@ -180,7 +180,7 @@ DiscoverPage {
                     resource: appInfo.application
                     ScrollBar.horizontal: screenshotsScrollbar
                     Layout.bottomMargin: Kirigami.Units.gridUnit * 2
-                    Layout.preferredHeight: Kirigami.Units.gridUnit * 20
+                    Layout.preferredHeight: Math.min(Kirigami.Units.gridUnit * 20, Window.height * 0.4)
                     Layout.fillWidth: true
                 }
                 ScrollBar {
@@ -200,6 +200,7 @@ DiscoverPage {
                         text: appInfo.application.comment
                         level: 2
                         font.weight: Font.DemiBold
+                        wrapMode: Text.WordWrap
                     }
 
                     contentItem: Label {
