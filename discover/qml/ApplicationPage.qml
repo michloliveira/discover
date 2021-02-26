@@ -195,19 +195,19 @@ DiscoverPage {
             padding: Kirigami.Units.largeSpacing
             contentItem: Kirigami.FlexColumn {
                 maximumWidth: Kirigami.Units.gridUnit * 40
-                Kirigami.AbstractCard {
-                    header: Kirigami.Heading {
-                        text: appInfo.application.comment
-                        level: 2
-                        font.weight: Font.DemiBold
-                        wrapMode: Text.WordWrap
-                    }
+                Kirigami.Heading {
+                    text: appInfo.application.comment
+                    level: 2
+                    font.weight: Font.DemiBold
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                }
 
-                    contentItem: Label {
-                        wrapMode: Text.WordWrap
-                        text: appInfo.application.longDescription
-                        onLinkActivated: Qt.openUrlExternally(link);
-                    }
+                Label {
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                    text: appInfo.application.longDescription
+                    onLinkActivated: Qt.openUrlExternally(link);
                 }
 
                 Kirigami.Heading {
