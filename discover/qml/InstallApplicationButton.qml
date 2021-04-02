@@ -80,8 +80,7 @@ ConditionalLoader
         enabled: application.state !== AbstractResource.Broken
         text: compact ? "" : root.text
         icon.name: compact ? root.action.icon.name : ""
-        focus: true
-
+        activeFocusOnTab: false
         onClicked: root.click()
     }
 }

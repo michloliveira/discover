@@ -14,6 +14,8 @@ import org.kde.kirigami 2.14 as Kirigami
 Kirigami.AbstractCard
 {
     id: delegateArea
+    activeFocusOnTab: true
+    highlighted: activeFocus
     property alias application: installButton.application
     property bool compact: false
     property bool showRating: true
