@@ -15,7 +15,6 @@ Kirigami.AbstractCard
 {
     id: delegateArea
     activeFocusOnTab: true
-    highlighted: activeFocus
     property alias application: installButton.application
     property bool compact: false
     property bool showRating: true
@@ -28,7 +27,7 @@ Kirigami.AbstractCard
             delegateRecycler.ListView.view.currentIndex = index
         Navigation.openApplication(application)
     }
-    highlighted: delegateRecycler && delegateRecycler.ListView.isCurrentItem
+    highlighted: activeFocus || delegateRecycler && delegateRecycler.ListView.isCurrentItem
     Keys.onReturnPressed: trigger()
     onClicked: trigger()
 
