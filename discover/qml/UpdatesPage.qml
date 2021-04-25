@@ -278,7 +278,7 @@ DiscoverPage
                             Layout.fillWidth: true
                             elide: truncated ? Text.ElideLeft : Text.ElideRight
                             text: resource.upgradeText
-                            opacity: listItem.hovered? 0.8 : 0.6
+                            //opacity: listItem.hovered? 0.8 : 0.6
                         }
                     }
 
